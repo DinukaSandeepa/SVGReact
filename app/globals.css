@@ -80,3 +80,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+pre.p-4.overflow-x-auto {
+  overflow: overlay;
+}

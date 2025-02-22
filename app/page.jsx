@@ -69,15 +69,15 @@ export default function Home() {
 
         {svgData && (
           <div className="space-y-6">
-            <CodeBlock
+            <CodeBlock 
               label="React Component"
               code={svgData.componentCode}
-              className="mb-4"
+              className="mb-4 border"
             />
             <CodeBlock
               label="Export Statement"
               code={svgData.exportCode}
-              className="mb-4"
+              className="mb-4 border "
             />
           </div>
         )}

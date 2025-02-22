@@ -21,7 +21,7 @@ export function CodeBlock({ code, label, className }: CodeBlockProps) {
 
   return (
     <div className={cn('relative rounded-lg bg-muted', className)}>
-      <div className="flex items-center justify-between px-4 py-2 border-b">
+      <div className="flex items-center gap-2 justify-between px-4 py-2 border-b">
         <span className="text-sm font-medium text-muted-foreground">{label}</span>
         <button
           onClick={copyToClipboard}
