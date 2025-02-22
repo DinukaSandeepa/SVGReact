@@ -1198,9 +1198,6 @@ video {
 .border-input {
   border-color: hsl(var(--input));
 }
-.border-muted-foreground\/25 {
-  border-color: hsl(var(--muted-foreground) / 0.25);
-}
 .border-primary {
   border-color: hsl(var(--primary));
 }
@@ -1275,9 +1272,6 @@ video {
 }
 .p-6 {
   padding: 1.5rem;
-}
-.p-8 {
-  padding: 2rem;
 }
 .p-\[1px\] {
   padding: 1px;
@@ -1713,10 +1707,6 @@ video {
 
 .focus-within\:z-20:focus-within {
   z-index: 20;
-}
-
-.hover\:border-primary\/50:hover {
-  border-color: hsl(var(--primary) / 0.5);
 }
 
 .hover\:bg-accent:hover {

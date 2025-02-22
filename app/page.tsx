@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { CodeBlock } from '@/components/ui/code-block';
 import { transformSvg } from '@/lib/transformSvg';
-import { Clipboard, AlertCircle } from 'lucide-react';
+import { AlertCircle } from 'lucide-react';
 
 export default function Home() {
   const [svgData, setSvgData] = useState<{
@@ -33,12 +33,6 @@ export default function Home() {
     }
   };
 
-  const handlePaste = (e: React.ClipboardEvent) => {
-    e.preventDefault();
-    const clipboardData = e.clipboardData.getData('text/plain');
-    processSvgCode(clipboardData);
-  };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     processSvgCode(inputValue);
@@ -50,37 +44,23 @@ export default function Home() {
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-4">SVG to React Transformer</h1>
           <p className="text-muted-foreground mb-6">
-            Paste your SVG code directly or use the input field below
+            Paste your SVG code in the input field below
           </p>
           
-          <div className="space-y-6">
-            <div 
-              onPaste={handlePaste}
-              className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-8 flex flex-col items-center justify-center gap-4 hover:border-primary/50 transition-colors cursor-pointer"
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <textarea
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+              placeholder="Enter your SVG code here..."
+              className="w-full h-32 px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+            <button
+              type="submit"
+              className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
             >
-              <Clipboard className="w-8 h-8 text-muted-foreground" />
-              <p className="text-muted-foreground">Right-click and paste SVG here</p>
-            </div>
-
-            <div className="text-center">
-              <p className="text-muted-foreground mb-4">- or -</p>
-            </div>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <textarea
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Enter your SVG code here..."
-                className="w-full h-32 px-4 py-3 rounded-lg border border-input bg-background text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <button
-                type="submit"
-                className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-              >
-                Transform SVG
-              </button>
-            </form>
-          </div>
+              Transform SVG
+            </button>
+          </form>
         </div>
 
         {error && (
