@@ -28,7 +28,7 @@ Built with **Next.js 13** and styled using **Tailwind CSS** with **shadcn/ui** c
 |---------|-------------|
 | 🚀 **Instant Transformation** | Real-time SVG to React component conversion |
 | 🎯 **Smart Naming** | Automatic kebab-case to PascalCase conversion |
-| 🎨 **Dynamic Styling** | Injects \`className\` prop for flexible styling |
+| 🎨 **Dynamic Styling** | Injects `className` prop for flexible styling |
 | 🔧 **React Property Fixes** | Auto-converts SVG attributes to React-compatible camelCase |
 | 📋 **One-Click Copy** | Copy transformed code instantly to clipboard |
 | 🌓 **Dark Mode Support** | Full light/dark theme compatibility |
@@ -39,24 +39,24 @@ Built with **Next.js 13** and styled using **Tailwind CSS** with **shadcn/ui** c
 
 The transformer applies the following modifications to make SVGs React-ready:
 
-\`\`\`
-┌─────────────────────────────────────────────────────────────────┐
-│                    INPUT SVG                                     │
-├─────────────────────────────────────────────────────────────────┤
-│  1. Extract component name from class="lucide lucide-{name}"   │
-│  2. Remove class attribute entirely                              │
-│  3. Add className={className} prop to <svg> tag                 │
-│  4. Remove stroke="..." attribute                                │
-│  5. Convert kebab-case attributes to camelCase:                 │
-│     • stroke-width    → strokeWidth                             │
-│     • stroke-linecap  → strokeLinecap                           │
-│     • stroke-linejoin → strokeLinejoin                          │
-│  6. Convert component name: kebab-case → PascalCase             │
-│  7. Wrap with withClassName HOC for default sizing              │
-├─────────────────────────────────────────────────────────────────┤
-│                    OUTPUT REACT COMPONENT                        │
-└─────────────────────────────────────────────────────────────────┘
-\`\`\`
+```text
+┌───────────────────────────────────────────────────────────────┐
+│                        INPUT SVG                              │
+├───────────────────────────────────────────────────────────────┤
+│  1. Extract component name from class="lucide lucide-{name}" │
+│  2. Remove class attribute entirely                           │
+│  3. Add className={className} prop to <svg> tag               │
+│  4. Remove stroke="..." attribute                             │
+│  5. Convert kebab-case attributes to camelCase:               │
+│     • stroke-width    → strokeWidth                           │
+│     • stroke-linecap  → strokeLinecap                         │
+│     • stroke-linejoin → strokeLinejoin                        │
+│  6. Convert component name: kebab-case → PascalCase           │
+│  7. Wrap with withClassName HOC for default sizing            │
+├───────────────────────────────────────────────────────────────┤
+│                    OUTPUT REACT COMPONENT                     │
+└───────────────────────────────────────────────────────────────┘
+```
 
 ## 🚀 Installation
 
@@ -67,7 +67,7 @@ The transformer applies the following modifications to make SVGs React-ready:
 
 ### Quick Start
 
-\`\`\`bash
+```bash
 # Clone the repository
 git clone https://github.com/DinukaSandeepa/SVGReact.git
 
@@ -79,18 +79,18 @@ npm install
 
 # Start development server
 npm run dev
-\`\`\`
+```
 
-The application will be available at \`http://localhost:3000\`
+The application will be available at `http://localhost:3000`
 
 ### Available Scripts
 
 | Command | Description |
 |---------|-------------|
-| \`npm run dev\` | Start development server with hot reload |
-| \`npm run build\` | Build production-ready static export |
-| \`npm run start\` | Start production server |
-| \`npm run lint\` | Run ESLint for code quality checks |
+| `npm run dev` | Start development server with hot reload |
+| `npm run build` | Build production-ready static export |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint for code quality checks |
 
 ## 📘 Usage
 
@@ -106,34 +106,29 @@ The application will be available at \`http://localhost:3000\`
 
 **Input SVG (from Lucide Icons):**
 
-\`\`\`svg
-<svg class="lucide lucide-arrow-right" xmlns="http://www.w3.org/2000/svg" 
-     width="24" height="24" viewBox="0 0 24 24" fill="none" 
-     stroke="currentColor" stroke-width="2" stroke-linecap="round" 
-     stroke-linejoin="round">
+```svg
+<svg class="lucide lucide-arrow-right" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
   <path d="M5 12h14"/>
   <path d="m12 5 7 7-7 7"/>
 </svg>
-\`\`\`
+```
 
 **Output React Component:**
 
-\`\`\`jsx
+```jsx
 const ArrowRightBase = ({ className }) => (
-  <svg className={className} xmlns="http://www.w3.org/2000/svg" 
-       width="24" height="24" viewBox="0 0 24 24" fill="none" 
-       strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+  <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 12h14"/>
     <path d="m12 5 7 7-7 7"/>
   </svg>
 );
 
 export const ArrowRight = withClassName(ArrowRightBase);
-\`\`\`
+```
 
 **Usage in Your Project:**
 
-\`\`\`jsx
+```jsx
 import { ArrowRight } from './icons/ArrowRight';
 
 function MyComponent() {
@@ -143,43 +138,45 @@ function MyComponent() {
     </button>
   );
 }
-\`\`\`
+```
 
 ## 📚 API Reference
 
-### \`transformSvg(svgCode: string)\`
+### `transformSvg(svgCode: string)`
 
 Main transformation function that converts SVG code to React component.
 
 **Parameters:**
-- \`svgCode\` (string): Raw SVG code with Lucide class naming
+- `svgCode` (string): Raw SVG code with Lucide class naming
 
 **Returns:**
-\`\`\`typescript
+
+```typescript
 {
   componentName: string;    // PascalCase component name with "Base" suffix
   componentCode: string;    // Full React component code
   exportCode: string;       // Export statement with withClassName HOC
 } | null
-\`\`\`
+```
 
-**Returns \`null\` if:**
-- SVG doesn't contain \`class="lucide lucide-{name}"\` pattern
+**Returns `null` if:**
+- SVG doesn't contain `class="lucide lucide-{name}"` pattern
 - Invalid SVG format
 
 ---
 
-### \`withClassName(Component)\`
+### `withClassName(Component)`
 
 Higher-Order Component that adds default sizing to icon components.
 
 **Behavior:**
-- Applies default \`w-6 h-6\` (24x24 pixels) sizing
+- Applies default `w-6 h-6` (24x24 pixels) sizing
 - Merges with any additional className passed as prop
 - Preserves component displayName for debugging
 
 **Example:**
-\`\`\`jsx
+
+```jsx
 const IconBase = ({ className }) => <svg className={className}>...</svg>;
 export const Icon = withClassName(IconBase);
 
@@ -191,31 +188,31 @@ export const Icon = withClassName(IconBase);
 
 // Usage - with additional styles
 <Icon className="w-4 h-4 text-red-500 hover:text-red-700" />
-\`\`\`
+```
 
 ## 🏗️ Project Structure
 
-\`\`\`
+```
 SVGReact/
 ├── app/
-│   ├── globals.css        # Global styles & CSS variables
-│   ├── layout.jsx         # Root layout with Inter font
-│   └── page.jsx           # Main application page
+│   ├── globals.css          # Global styles & CSS variables
+│   ├── layout.jsx           # Root layout with Inter font
+│   └── page.jsx             # Main application page
 ├── components/
 │   └── ui/
-│       ├── code-block.tsx # Code display with copy functionality
-│       └── ...            # shadcn/ui components (40+ components)
+│       ├── code-block.tsx   # Code display with copy functionality
+│       └── ...              # shadcn/ui components (40+ components)
 ├── hooks/
-│   └── use-toast.ts       # Toast notification hook
+│   └── use-toast.ts         # Toast notification hook
 ├── lib/
-│   ├── transformSvg.js    # Core SVG transformation logic
-│   ├── withClassName.js   # HOC for className injection
-│   └── utils.js           # Utility functions (cn helper)
-├── components.json        # shadcn/ui configuration
-├── next.config.js         # Next.js configuration
-├── tailwind.config.ts     # Tailwind CSS configuration
-└── package.json           # Dependencies & scripts
-\`\`\`
+│   ├── transformSvg.js      # Core SVG transformation logic
+│   ├── withClassName.js     # HOC for className injection
+│   └── utils.js             # Utility functions (cn helper)
+├── components.json          # shadcn/ui configuration
+├── next.config.js           # Next.js configuration
+├── tailwind.config.ts       # Tailwind CSS configuration
+└── package.json             # Dependencies & scripts
+```
 
 ## 🛠️ Tech Stack
 
@@ -242,45 +239,43 @@ SVGReact/
 
 The app is configured for static export, making it deployable to any static hosting:
 
-\`\`\`javascript
+```javascript
 // next.config.js
 const nextConfig = {
-  output: 'export',        // Enable static HTML export
+  output: 'export',
   images: { unoptimized: true },
 };
-\`\`\`
+```
 
 ### Theming
 
-CSS variables are defined in \`app/globals.css\` for easy customization:
+CSS variables are defined in `app/globals.css` for easy customization:
 
-\`\`\`css
+```css
 :root {
   --background: 0 0% 100%;
   --foreground: 0 0% 3.9%;
   --primary: 0 0% 9%;
   --primary-foreground: 0 0% 98%;
-  /* ... more variables */
 }
 
 .dark {
   --background: 0 0% 3.9%;
   --foreground: 0 0% 98%;
-  /* ... dark mode overrides */
 }
-\`\`\`
+```
 
 ## 🚢 Deployment
 
 ### Static Hosting (Recommended)
 
-\`\`\`bash
+```bash
 # Build static files
 npm run build
 
 # Output will be in 'out' directory
 # Deploy to Vercel, Netlify, GitHub Pages, etc.
-\`\`\`
+```
 
 ### Vercel (One-Click)
 
@@ -295,9 +290,9 @@ npm run build
 Contributions are welcome! Here's how you can help:
 
 1. **Fork** the repository
-2. **Create** a feature branch: \`git checkout -b feature/amazing-feature\`
-3. **Commit** your changes: \`git commit -m 'Add amazing feature'\`
-4. **Push** to the branch: \`git push origin feature/amazing-feature\`
+2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** your changes: `git commit -m 'Add amazing feature'`
+4. **Push** to the branch: `git push origin feature/amazing-feature`
 5. **Open** a Pull Request
 
 ### Development Guidelines
@@ -311,7 +306,7 @@ Contributions are welcome! Here's how you can help:
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-\`\`\`
+```
 MIT License
 
 Copyright (c) 2024 Dinuka Sandeepa
@@ -321,7 +316,7 @@ of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software.
-\`\`\`
+```
 
 ## 🙏 Acknowledgments
 
